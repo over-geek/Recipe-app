@@ -1,0 +1,14 @@
+<% if @user_recipes.empty? %>
+  <p> You have not created recipes yet </p>
+<% else %>
+    <% @user_recipes.each do |recipe| %>
+        <div class="recipe">
+            <h2><%= recipe.name %></h2>
+            <p><%= recipe.description %></p>
+            <% if can? :destroy, recipe %>
+                <%= link_to 'Delete', recipe, method: :delete, data: { confirm: 'Are you sure?' } %>
+            <% end %>
+        </div>
+    <% end %>
+<% end %>
+
