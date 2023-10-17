@@ -11,6 +11,13 @@
   </head>
 
   <body>
+    <!-- Add flash messages for success and error -->
+    <div class="flash-notice">
+      <%= notice %>
+    </div>
+    <div class="flash-alert">
+      <%= alert %>
+    </div>
     <%= yield %>
   </body>
 </html>
