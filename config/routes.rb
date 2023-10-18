@@ -4,5 +4,5 @@ Rails.application.routes.draw do
 
   root to: "home#index"
   resources :recipes 
-  
+  resources :foods
 end
