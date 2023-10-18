@@ -22,12 +22,20 @@ default: &default
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
 
 development:
+  #
   <<: *default
+  #default: &default
   database: recipe_app_development
+  #username: mac
+  #password: 
+  
+  adapter: postgresql
+  host: localhost   # or the hostname or IP of your PostgreSQL server
+  port: 5433        # the port where PostgreSQL is running
   username: postgres
-
-  # The password associated with the postgres role (username).
   password: "1234"
+
+  
 
   # The specified database role being used to connect to postgres.
   # To create additional roles in postgres see `$ createuser --help`.
@@ -45,7 +53,7 @@ development:
 
   # The TCP port the server listens on. Defaults to 5432.
   # If your server runs on a different port number, change accordingly.
-  #port: 5432
+  #port: 5433
 
   # Schema search path. The server defaults to $user,public
   #schema_search_path: myapp,sharedapp,public
@@ -62,10 +70,16 @@ development:
 test:
   <<: *default
   database: recipe_app_test
+  default: &default
+  adapter: postgresql
+  host: localhost   # or the hostname or IP of your PostgreSQL server
+  port: 5433        # the port where PostgreSQL is running
   username: postgres
+  password: "1234" 
+  
 
   # The password associated with the postgres role (username).
-  password: "1234"
+ 
 
 # As with config/credentials.yml, you never want to store sensitive information,
 # like your database password, in your source code. If your source code is
