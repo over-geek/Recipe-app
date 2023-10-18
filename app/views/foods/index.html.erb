@@ -1,0 +1,19 @@
+<h1>Your Food List</h1>
+<table>
+  <tr>
+    <th>Name</th>
+    <th>Quantity</th>
+    <th>Unit Price</th>
+    <th>Action</th>
+  </tr>
+  <% @foods.each do |food| %>
+    <tr>
+      <td><%= food.name %></td>
+      <td><%= food.quantity %></td>
+      <td><%= food.price %></td>
+      <td><%= link_to 'Delete', food_path(food), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+    </tr>
+  <% end %>
+</table>
+
+<%= link_to 'Add Food', new_food_path %>

@@ -127,9 +127,6 @@ To run tests, run the following command:
 <!-- FUTURE FEATURES -->
 
 ## 🔭 Future Features <a name="future-features"></a>
-
-- [ ] **Login and registration pages**
-- [ ] **Food list page**
 - [ ] **Recipes list page**
 - [ ] **Public recipe list page**
 - [ ] **Recipe details page**
