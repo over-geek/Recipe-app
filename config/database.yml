@@ -35,7 +35,12 @@ development:
   username: postgres
   password: "1234"
 
-  
+ #default: &default
+  #adapter: postgresql
+  #host: localhost   # or the hostname or IP of your PostgreSQL server
+  #port: 5433        # the port where PostgreSQL is running
+  #username: postgres
+  #password: "1234" 
 
   # The specified database role being used to connect to postgres.
   # To create additional roles in postgres see `$ createuser --help`.
@@ -76,7 +81,13 @@ test:
   port: 5433        # the port where PostgreSQL is running
   username: postgres
   password: "1234" 
-  
+ 
+  #default: &default
+  #adapter: postgresql
+  #host: localhost   # or the hostname or IP of your PostgreSQL server
+  #port: 5433        # the port where PostgreSQL is running
+  #username: postgres
+  #password: "1234"
 
   # The password associated with the postgres role (username).
  
