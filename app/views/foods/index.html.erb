@@ -3,15 +3,15 @@
 <table id="customers">
   <tr>
     <th>Name</th>
-    <th>Quantity</th>
+    <th>Measurement Unit</th>
     <th>Unit Price</th>
     <th>Action</th>
   </tr>
   <% @foods.each do |food| %>
     <tr>
       <td><%= food.name %></td>
-      <td><%= food.quantity %></td>
-      <td><%= food.price %></td>
+      <td><%= food.measurement_unit %></td>
+      <td><%= number_to_currency(food.price, unit: "$") %></td>
       <td><%= link_to 'Delete', food_path(food), method: :delete, data: { confirm: 'Are you sure?' } %></td>
     </tr>
   <% end %>
