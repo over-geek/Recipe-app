@@ -1,5 +1,7 @@
 class RecipesController < ApplicationController
-  before_action :authenticate_user!
+  before_action :authenticate_user!, except: %i[index show]
+  before_action :authorize_recipe_toggle, only: [:toggle]
+
   def index
     @user_recipes = Recipe.where(user_id: current_user.id)
     @user = current_user
@@ -11,9 +13,7 @@ class RecipesController < ApplicationController
 
   def show
     @recipe = Recipe.find(params[:id])
-    authorize! :destroy, @recipe # Check authorization to delete the post
-    @recipe.destroy
-    redirect_to recipes_path, notice: 'Post was successfully deleted.'
+    @recipe_foods = @recipe.recipe_foods
   end
 
   def create
@@ -25,7 +25,41 @@ class RecipesController < ApplicationController
     end
   end
 
+  def toggle
+    @recipe = Recipe.find(params[:id])
+    @recipe.update(is_public: !@recipe.is_public)
+
+    if @recipe.is_public?
+      session[:public_recipes] ||= []
+      session[:public_recipes] << @recipe.id
+    elsif session[:public_recipes]
+      session[:public_recipes].delete(@recipe.id)
+    end
+
+    respond_to do |format|
+      format.html { redirect_to @recipe }
+    end
+  end
+
+  def public_recipes
+    @public_recipes = Recipe.where(is_public: true).order(created_at: :desc)
+  end
+
+  def destroy
+    @recipe = current_user.recipes.find(params[:id])
+    @recipe.destroy
+    redirect_to recipes_path, notice: 'Recipe deleted successfully.'
+  end
+
   private
+
+  def authorize_recipe_toggle
+    @recipe = Recipe.find(params[:id])
+    return if @recipe.user_id == current_user.id
+
+    flash[:error] = 'You are not authorized to perform this action.'
+    redirect_to recipes_path
+  end
 
   def recipe_params
     params.require(:recipe).permit(:name, :preparation_time, :cooking_time, :description)

@@ -3,13 +3,11 @@
 <% else %>
     <% @user_recipes.each do |recipe| %>
         <div class="recipe">
-            <div class="name-but">
-                <h2><%= recipe.name %></h2>
-                <% if can? :destroy, recipe %>
-                    <%= link_to 'Delete', recipe, method: :delete, data: { confirm: 'Are you sure?' } %>
-                <% end %>
-            </div>
-            <p><%= recipe.description %></p> 
+            <h2><%= link_to recipe.name, recipe_path(recipe, recipe) %></h2>
+            <p><%= recipe.description %></p>
+            <% if can? :destroy, recipe %>
+                <%= link_to 'Delete', recipe, method: :delete, data: { confirm: 'Are you sure?' } %>
+            <% end %>
         </div>
     <% end %>
 <% end %>
