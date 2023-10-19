@@ -1,7 +1,6 @@
 class FoodsController < ApplicationController
   before_action :authenticate_user!
   before_action :set_food, only: %i[show destroy]
-  # load_and_authorize_resource except: [:show]
 
   def index
     @foods = current_user.foods
@@ -21,10 +20,15 @@ class FoodsController < ApplicationController
   end
 
   def show
-    if @food.destroy
-      redirect_to foods_path, notice: 'Food item deleted.'
+    @food = Food.find(params[:id])
+    if @food.recipe_foods.empty?
+      if @food.destroy
+        redirect_to foods_path, notice: 'Food item deleted.'
+      else
+        redirect_to foods_path, alert: 'Failed to delete food item.'
+      end
     else
-      redirect_to foods_path, alert: 'Failed to delete food item.'
+      redirect_to foods_path, alert: 'Food item is still being used in recipes'
     end
   end
 
@@ -33,6 +37,6 @@ class FoodsController < ApplicationController
   end
 
   def food_params
-    params.require(:food).permit(:name, :quantity, :price)
+    params.require(:food).permit(:name, :measurement_unit, :price)
   end
 end
