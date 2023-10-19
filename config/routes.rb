@@ -12,4 +12,6 @@ Rails.application.routes.draw do
     end
   end
   resources :foods
+
+  get 'general_list', to: 'general_list#index'
 end
