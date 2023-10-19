@@ -17,14 +17,14 @@ class RecipeFoodsController < ApplicationController
 
   def create
     @recipe_food = RecipeFood.new(recipe_food_params)
-    @recipe_food.recipe = @recipe  # Associate the food with the recipe
-  
+    @recipe_food.recipe = @recipe # Associate the food with the recipe
+
     if @recipe_food.save
       flash[:notice] = 'The ingredient was added successfully!'
-      redirect_to recipe_recipe_food_path(@recipe, @recipe_food)  # Redirect to the show page for the new food
+      redirect_to recipe_recipe_food_path(@recipe, @recipe_food) # Redirect to the show page for the new food
     else
       flash[:alert] = @recipe_food.errors.full_messages.join(', ')
-      redirect_to new_food_recipe_recipe_food_path(@recipe, @recipe)  # Redirect back to the new food form with error messages
+      redirect_to new_food_recipe_recipe_food_path(@recipe, @recipe)
     end
   end
 
@@ -46,7 +46,7 @@ class RecipeFoodsController < ApplicationController
 
   def destroy
     @recipe_food = @recipe.recipe_foods.find(params[:id])
-  
+
     if @recipe_food.destroy
       redirect_to recipe_recipe_foods_url, notice: 'Recipe food was successfully destroyed.'
     else
