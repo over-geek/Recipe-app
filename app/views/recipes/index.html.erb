@@ -3,10 +3,10 @@
 <% else %>
     <% @user_recipes.each do |recipe| %>
         <div class="recipe">
-            <h2><%= link_to recipe.name, recipe_path(recipe, recipe) %></h2>
+            <h2><%= link_to recipe.name, recipe_path(recipe) %></h2>
             <p><%= recipe.description %></p>
             <% if can? :destroy, recipe %>
-                <%= link_to 'Delete', recipe, method: :delete, data: { confirm: 'Are you sure?' } %>
+            <%= link_to 'Delete', show_for_purpose1_recipe_path(recipe) %>
             <% end %>
         </div>
     <% end %>

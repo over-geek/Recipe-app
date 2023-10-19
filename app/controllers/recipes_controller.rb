@@ -11,6 +11,13 @@ class RecipesController < ApplicationController
     @recipe = Recipe.new
   end
 
+  def show_for_purpose1
+    @recipe = Recipe.find(params[:id])
+    authorize! :destroy, @recipe
+    @recipe.destroy
+    redirect_to recipes_path, notice: 'Recipe was deleted successfully.'
+  end
+
   def show
     @recipe = Recipe.find(params[:id])
     @recipe_foods = @recipe.recipe_foods
@@ -45,11 +52,11 @@ class RecipesController < ApplicationController
     @public_recipes = Recipe.where(is_public: true).order(created_at: :desc)
   end
 
-  def destroy
-    @recipe = current_user.recipes.find(params[:id])
-    @recipe.destroy
-    redirect_to recipes_path, notice: 'Recipe deleted successfully.'
-  end
+  # def destroy
+  # @recipe = current_user.recipes.find(params[:id])
+  # @recipe.destroy
+  # redirect_to recipes_path, notice: 'Recipe deleted successfully.'
+  # end
 
   private
 

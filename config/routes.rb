@@ -13,5 +13,12 @@ Rails.application.routes.draw do
   end
   resources :foods
 
+  resources :recipes do
+    member do
+      get 'show_for_purpose1'
+    end
+  end
+  
+
   get 'general_list', to: 'general_list#index'
 end
