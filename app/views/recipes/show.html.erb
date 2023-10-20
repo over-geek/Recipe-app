@@ -22,7 +22,7 @@
     </div>
   </section>
   <section>
-    <%= link_to 'Generate Shop List', '#' %>
+  <%= link_to 'General List', general_list_path %>
     <% if @recipe.user == current_user %>
       <%= link_to 'Add Ingredient', new_recipe_recipe_food_path(@recipe) %>
     <% end %>
