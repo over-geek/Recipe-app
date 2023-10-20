@@ -1,5 +1,17 @@
 # This file is copied to spec/ when you run 'rails generate rspec:install'
+
+require 'factory_bot_rails'
 require 'spec_helper'
+require 'devise'
+
+RSpec.configure do |config|
+  config.include FactoryBot::Syntax::Methods
+end
+
+# spec/rails_helper.rb or spec/spec_helper.rb
+
+# Add this at the top of the file:
+
 ENV['RAILS_ENV'] ||= 'test'
 require_relative '../config/environment'
 # Prevent database truncation if the environment is production

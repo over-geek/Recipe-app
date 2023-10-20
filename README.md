@@ -122,6 +122,11 @@ To run tests, run the following command:
 - Twitter: [@twitterhandle](https://twitter.com/KissiKenneth)
 - LinkedIn: [LinkedIn](https://www.linkedin.com/in/kenneth-agyare-kissi-673a01186/)
 
+👤 **Franck Kalunga**
+
+- GitHub: [francksefu](https://github.com/francksefu)
+- Twitter: [francksefu](https://twitter.com/franck_sefu)
+- LinkedIn: [francksefu](https://www.linkedin.com/in/franck-sefu-884705254/) 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 <!-- FUTURE FEATURES -->
