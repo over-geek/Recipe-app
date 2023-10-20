@@ -76,9 +76,9 @@ group :test do
 end
 
 gem 'cancancan', '~> 1.9'
-
 group :development, :test do
   gem 'capybara'
   gem 'factory_bot_rails'
   gem 'selenium-webdriver'
 end
+
