@@ -2,29 +2,22 @@ class RecipeFoodsController < ApplicationController
   before_action :authenticate_user!
   before_action :set_recipe
 
-  def index
-    @recipes = Recipe.includes(:user).where(public: true).order(created_at: :desc)
-  end
-
-  def show
-    @recipe_foods = @recipe.recipe_foods
-  end
-
   def new
     @recipe = Recipe.find(params[:recipe_id])
-    @recipe_food = RecipeFood.new
+    @foods = Food.all
+    @recipe_food = @recipe.recipe_foods.new
   end
 
   def create
-    @recipe_food = RecipeFood.new(recipe_food_params)
-    @recipe_food.recipe = @recipe # Associate the food with the recipe
+    @recipe = Recipe.find(params[:recipe_id])
+    @recipe_food = @recipe.recipe_foods.new(recipe_food_params)
 
-    if @recipe_food.save
-      flash[:notice] = 'The ingredient was added successfully!'
-      redirect_to recipe_recipe_food_path(@recipe, @recipe_food) # Redirect to the show page for the new food
+    if @recipe.user == current_user && @recipe_food.save
+      flash[:success] = 'Ingredient successfully added'
+      redirect_to @recipe
     else
-      flash[:alert] = @recipe_food.errors.full_messages.join(', ')
-      redirect_to new_food_recipe_recipe_food_path(@recipe, @recipe)
+      flash[:error] = 'Error adding ingredient'
+      render :new
     end
   end
 
@@ -37,7 +30,7 @@ class RecipeFoodsController < ApplicationController
 
     if @recipe_food.update(recipe_food_params)
       flash[:notice] = 'The ingredient was modified successfully!'
-      redirect_to recipe_recipe_food_path(@recipe, @recipe_food) # Redirect to the show page for the updated food
+      redirect_to @recipe # Redirect to the show page for the updated food
     else
       flash[:alert] = @recipe_food.errors.full_messages.join(', ')
       render :edit # Render the edit page again with error messages
@@ -48,7 +41,7 @@ class RecipeFoodsController < ApplicationController
     @recipe_food = @recipe.recipe_foods.find(params[:id])
 
     if @recipe_food.destroy
-      redirect_to recipe_recipe_foods_url, notice: 'Recipe food was successfully destroyed.'
+      redirect_to @recipe, notice: 'Recipe food was successfully destroyed.'
     else
       flash[:alert] = 'Failed to destroy recipe food.'
       render :show
