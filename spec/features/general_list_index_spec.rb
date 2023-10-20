@@ -10,22 +10,18 @@ RSpec.feature 'General List Index Page', type: :feature do
     login_as(user, scope: :user) # Log in the user using Devise
 
     # Create food items for the shopping list
-    @food1 = Food.create(name: 'Food 1', price: 5.0, quantity: 2, user: user)
-    @food2 = Food.create(name: 'Food 2', price: 3.0, quantity: 3, user: user)
-    
-    
+    @food1 = Food.create(name: 'Food 1', price: 5.0, quantity: 2, user:)
+    @food2 = Food.create(name: 'Food 2', price: 3.0, quantity: 3, user:)
+
     # Make sure these food items do not have corresponding RecipeFood entries.
-    
+
     # You may need to create some RecipeFood entries in a 'before' block
     # if required by your application logic.
 
     visit general_list_path
   end
 
-  
-
   scenario 'displays the shopping list with the total value and item count' do
     expect(page).to have_content('Shopping List')
   end
-
 end
