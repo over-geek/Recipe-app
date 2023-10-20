@@ -4,7 +4,7 @@ class RecipesController < ApplicationController
 
   def index
     @user_recipes = Recipe.where(user_id: current_user.id)
-    @user = current_user
+    @user = current_user.recipes.includes(:user)
   end
 
   def new
