@@ -12,9 +12,6 @@ end
 
 # Add this at the top of the file:
 
-
-
-
 ENV['RAILS_ENV'] ||= 'test'
 require_relative '../config/environment'
 # Prevent database truncation if the environment is production
