@@ -5,7 +5,7 @@ require 'rails_helper'
 RSpec.feature 'Recipe Index Page', type: :feature do
   include Warden::Test::Helpers
   let(:user) { create(:user) }
-  let!(:recipe) { create(:recipe, user: user) } # Assuming you have FactoryBot set up for user and recipe creation
+  let!(:recipe) { create(:recipe, user:) } # Assuming you have FactoryBot set up for user and recipe creation
 
   before do
     login_as(user, scope: :user) # Log in the user using Devise

@@ -8,8 +8,8 @@ RSpec.describe GeneralListController, type: :controller do
     sign_in user # Authenticate the user using Devise
   end
 
-  describe "GET #index" do
-    it "returns http success" do
+  describe 'GET #index' do
+    it 'returns http success' do
       get :index
       expect(response).to have_http_status(200)
       expect(response).to be_successful
