@@ -25,6 +25,13 @@ class RecipesController < ApplicationController
     end
   end
 
+  def show_for_purpose1
+    @recipe = Recipe.find(params[:id])
+    authorize! :destroy, @recipe
+    @recipe.destroy
+    redirect_to recipes_path, notice: 'Recipe was deleted successfully.'
+  end
+
   def toggle
     @recipe = Recipe.find(params[:id])
     @recipe.update(is_public: !@recipe.is_public)

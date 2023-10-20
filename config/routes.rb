@@ -10,6 +10,12 @@ Rails.application.routes.draw do
     resources :recipe_foods, only: [:new, :create, :edit, :update, :destroy]
   end
   resources :foods
+
+  resources :recipes do
+    member do
+      get 'show_for_purpose1'
+    end
+  end
   
   get 'public_recipes', to: 'recipes#public_recipes', as: :public_recipes
 
