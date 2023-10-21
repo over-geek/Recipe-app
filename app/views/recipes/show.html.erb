@@ -9,13 +9,17 @@
         <p> <%= @recipe.description %> </p>
       </div>
     </div>
-    <div>
+    <div class="toggle-container">
       <% if @recipe.user_id == current_user.id %>
         <%= form_with model: @recipe, url: toggle_recipe_path(@recipe), method: :patch, local: true do |form| %>
           <% new_public_status = !@recipe.is_public %>
-          <button type="submit" class="toggle-button <%= @recipe.is_public ? 'private' : 'public' %>">
-            <%= new_public_status ? 'status: Private' : 'status: Public' %>
-          </button>
+          <span class="status-text"><%= new_public_status ? 'Private' : 'Public' %></span>
+          <label class="switch">
+            <input type="hidden" name="recipe[public]" value="0"> <!-- Hidden field for false value -->
+            <div class="toggle_status_container">
+              <button type="submit" class="toggle-button <%= @recipe.is_public ? 'private' : 'public' %>"></button>
+            </div>
+          </label>
           <%= form.hidden_field :public, value: new_public_status %>
         <% end %>
      <% end %>
