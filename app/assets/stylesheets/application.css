@@ -16,20 +16,41 @@
 
 .recipe,
 .public_recipe_list {
+  display: grid;
   border: 1px solid black;
   padding: 10px;
-  width: 60%;
-  margin: 10px 20%;
-}
-
-.recipe {
-  display: grid;
-  grid-template-columns: 30% 70%;
 }
 
 .public_recipe_list {
+  width: 40%;
+  grid-template-columns: 40% 60%;
+  margin: 0 auto;
+}
+
+.public_recipe_list p,
+.public_recipe_list h3 {
+  margin: 0;
+}
+
+.public_recipe_list h3 {
+  font-size: 26px;
+  margin-bottom: 10px;
+}
+
+.public_recipe_list > div:nth-child(1) {
   display: flex;
+  flex-direction: column;
   justify-content: space-between;
+}
+
+.public_recipe_amount {
+  margin-top: 10px !important;
+}
+
+.recipe {
+  width: 60%;
+  grid-template-columns: 30% 70%;
+  margin: 10px 20%;
 }
 
 .recipe_links {
@@ -192,4 +213,46 @@ input[type=submit]:hover {
 .mov {
   width: 15%;
   margin: 10px 45%;
+}
+
+/* Add these styles to your CSS */
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 40px;
+  height: 34px;
+}
+
+.toggle-container {
+  width: 160px;
+}
+
+.toggle_status_container {
+  border: 1px solid black;
+  border-radius: 30%;
+  cursor: pointer;
+}
+
+.toggle-button {
+  display: block;
+  height: 20px;
+  width: 20px;
+  border-radius: 50%;
+  background-color: #ccc;
+  transition: 0.4s;
+  cursor: pointer;
+}
+
+.toggle-button.private {
+  background-color: green;
+  transform: translateX(100%);
+}
+
+.toggle-button.public {
+  background-color: red;
+  transform: translateX(0%);
+}
+
+.hidden-toggle-field {
+  display: none; /* Hide the hidden field */
 }

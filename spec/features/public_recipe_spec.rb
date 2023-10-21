@@ -25,8 +25,8 @@ RSpec.describe 'Public Recipes Index', type: :feature do
     expect(page).to have_content(@recipe2.name)
     expect(page).to have_content(@recipe3.name)
     expect(page).not_to have_content(@recipe1.name)
-    expect(page).to have_content("Author: #{@user1.name}")
-    expect(page).to have_content("Author: #{@user2.name}")
-    expect(page).to_not have_content("Author: #{@user3.name}")
+    expect(page).to have_content("By: #{@user1.name}")
+    expect(page).to have_content("By: #{@user2.name}")
+    expect(page).to_not have_content("By: #{@user3.name}")
   end
 end
